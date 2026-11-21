@@ -1,0 +1,39 @@
+---
+title: "PowerAnalysis_EvoSLang"
+author: "Monica Wei"
+date: "2026-11-18"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(pwr)
+```
+
+## Power analysis (multiple linear regression)
+# reference: https://cran.r-project.org/web/packages/pwr/pwr.pdf#page=12.08
+
+```{r power, include=TRUE}
+result_bsl <- pwr.f2.test(
+  u = 7,           # 8 regions - 1
+  f2 = 0.15,       # hypothetical medium effect (small = 0.02; large = 0.35)
+  sig.level = 0.05,
+  power = 0.80
+)
+
+# Residual degrees of freedom -> sample size
+# v = N - k - 1 --> N = v + k + 1 (v = residual degrees of freedom; k = total number of predictor coefficients)
+# region: 8
+# age (continuous): 1
+# own-region advantage (binary): 1
+# intercept: 1
+ceiling(result_bsl$v + 9 + 1)
+
+result_isl <- pwr.f2.test(
+  u = 3,           # 4 regions - 1
+  f2 = 0.15,
+  sig.level = 0.05,
+  power = 0.80
+)
+
+ceiling(result_isl$v + 5 + 1)
+```

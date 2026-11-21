@@ -221,3 +221,24 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Data
+*.json
+*.csv
+*.xlsx
+*.mp4
+*.jpg
+
+# R
+*.html
+.Rhistory
+.Rapp.history
+.RData
+.RDataTmp
+.Ruserdata
+# knitr and R markdown default cache directories
+*_cache/
+/cache/
+
+# Mac
+.DS_Store
